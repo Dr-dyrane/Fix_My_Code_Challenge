@@ -1,25 +1,31 @@
-#!/usr/bin/ruby
-###############################################################################
-# Sort Integer Arguments
+###
 #
-# This script sorts the integer arguments provided in ascending order.
+#  Sort integer arguments (ascending) 
 #
-# Usage:
-#   ./2-sort.rb <integer1> <integer2> ...
-#
-# Example:
-#   ./2-sort.rb 12 41 2 9 -9 31 -1 32
-#   Output: -9 -1 2 9 12 31 32 41
-#
-# Author:
-# - Alexander Udeogaranya
-###############################################################################
+###
 
-# Collect integer arguments
-result = ARGV.select { |arg| arg.match?(/^(-?\d+)$/) }.map(&:to_i)
+result = []
+ARGV.each do |arg|
+    # skip if not integer
+    next if arg !~ /^-?[0-9]+$/
 
-# Sort the integer arguments in ascending order
-result.sort!
+    # convert to integer
+    i_arg = arg.to_i
+    
+    # insert result at the right position
+    is_inserted = false
+    i = 0
+    l = result.size
+    while !is_inserted && i < l do
+        if result[i] < i_arg
+            i += 1
+        else
+            result.insert(i - 1, i_arg)
+            is_inserted = true
+            break
+        end
+    end
+    result << i_arg if !is_inserted
+end
 
-# Print the sorted integers
-result.each { |num| puts num }
+puts result

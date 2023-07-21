@@ -1,26 +1,9 @@
 #!/usr/bin/node
 /*
-Print Square
-
-This script prints a square with the character '#'
-based on the provided size argument.
-
-Requirements:
-- Node.js
-
-Usage:
-  ./1-print_square.js <size>
-
-Example:
-  ./1-print_square.js 4
-  Output:
-  ####
-  ####
-  ####
-  ####
-
-Author:
-- Alexander Udeogaranya
+    Print a square with the character #
+    
+    The size of the square must be the first argument 
+    of the program.
 */
 
 if (process.argv.length <= 2) {
@@ -30,30 +13,11 @@ if (process.argv.length <= 2) {
   process.exit(1);
 }
 
-const size = parseInt(process.argv[2]);
+size = parseInt(process.argv[2], 16);
 
-if (isNaN(size)) {
-  process.stderr.write(
-    "Invalid size argument. Please provide a valid integer.\n"
-  );
-  process.exit(1);
-}
-
-/**
- * Prints a square with the character '#' based on the provided size.
- *
- * @param {number} size - The size of the square.
- * @returns {void}
- */
-function printSquare(size) {
-  for (let i = 0; i < size; i++) {
-    let line = "";
-    for (let j = 0; j < size; j++) {
-      line += "#";
-    }
-    console.log(line);
+for (let i = 0; i < size; i++) {
+  for (let j = 0; j < size; j++) {
+    process.stdout.write("#");
   }
+  process.stdout.write("\n");
 }
-
-/* Call the printSquare function with the provided size */
-printSquare(size);
